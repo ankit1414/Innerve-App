@@ -131,7 +131,10 @@ public class HomeActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(HomeActivity.this,"Navigate",Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse("http://maps.google.com/maps?saddr=current location &daddr=igdtu"));
+                startActivity(intent);
+
             }
         });
 
