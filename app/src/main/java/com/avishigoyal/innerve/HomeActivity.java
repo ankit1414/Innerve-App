@@ -16,6 +16,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class HomeActivity extends AppCompatActivity
@@ -27,15 +28,19 @@ public class HomeActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
+                public void onClick(View v) {
+                    Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
+                    emailIntent.setData(Uri.parse("mailto:"));
+                    emailIntent.putExtra(Intent.EXTRA_EMAIL , new String[] {"csetechinnerve2019@gmail.com"});
+                    emailIntent.putExtra(Intent.EXTRA_SUBJECT , "query regarding INNERVE 2019");
+                    startActivity(emailIntent);
+                }
         });
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
@@ -44,6 +49,8 @@ public class HomeActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
+
+
 
 
         preinnerve=findViewById(R.id.preinnerve);
@@ -128,18 +135,6 @@ public class HomeActivity extends AppCompatActivity
             }
         });
 
-        FloatingActionButton contactUs  = findViewById(R.id.fab);
-        contactUs.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
-                emailIntent.setData(Uri.parse("mailto:"));
-                emailIntent.putExtra(Intent.EXTRA_EMAIL , new String[] {"csetechinnerve2019@gmail.com"});
-                emailIntent.putExtra(Intent.EXTRA_SUBJECT , "query regarding INNERVE 2019");
-                startActivity(emailIntent);
-            }
-        });
-
     }
 
     @Override
@@ -155,6 +150,8 @@ public class HomeActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
+        TextView t1 = findViewById(R.id.textView);
+        t1.setText(LoginActivity.getUser_email());
         getMenuInflater().inflate(R.menu.home, menu);
         return true;
     }
@@ -187,6 +184,12 @@ public class HomeActivity extends AppCompatActivity
         } else if (id == R.id.Sponsors) {
 
         } else if (id == R.id.contact) {
+            Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
+            emailIntent.setData(Uri.parse("mailto:"));
+            emailIntent.putExtra(Intent.EXTRA_EMAIL , new String[] {"csetechinnerve2019@gmail.com"});
+            emailIntent.putExtra(Intent.EXTRA_SUBJECT , "query regarding INNERVE 2019");
+            startActivity(emailIntent);
+
 
         } else if (id == R.id.nav_share) {
 

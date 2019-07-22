@@ -24,27 +24,55 @@ import android.widget.Toast;
 import com.avishigoyal.innerve.R;
 
 public class LoginActivity extends AppCompatActivity {
+    private static String user_email;
+    private static String  password;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
+        final EditText emailField = findViewById(R.id.editText);
+        final EditText passwordField = findViewById(R.id.editText2);
         Button login = findViewById(R.id.button2);
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Intent i=new Intent(LoginActivity.this, HomeActivity.class);
-                startActivity(i);
+                if(emailField.getText().toString().equals("") || passwordField.getText().toString().equals("")){
+                    Toast.makeText(getApplicationContext() , "please enter valid emailId and password" , Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    user_email = emailField.getText().toString();
+
+
+                    password = passwordField.getText().toString();
+
+
+                    Intent i=new Intent(LoginActivity.this, HomeActivity.class);
+                    startActivity(i);
+
+                }
+
+
 
             }
         });
-        overridePendingTransition(0,0);
-        View relativeLayout=findViewById(R.id.login_container);
-        Animation animation= AnimationUtils.loadAnimation(this,android.R.anim.fade_in);
-        relativeLayout.startAnimation(animation);
+//        overridePendingTransition(0,0);
+//        View relativeLayout=findViewById(R.id.login_container);
+//        Animation animation= AnimationUtils.loadAnimation(this,android.R.anim.fade_in);
+//        relativeLayout.startAnimation(animation);
 
 
+
+
+
+    }
+
+    public static String getUser_email() {
+        return user_email;
+    }
+
+    public static String getPassword() {
+        return password;
     }
 }
