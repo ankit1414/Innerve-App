@@ -1,5 +1,7 @@
 package com.avishigoyal.innerve;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -123,6 +125,18 @@ public class HomeActivity extends AppCompatActivity
             public void onClick(View v) {
 
                 Toast.makeText(HomeActivity.this,"Navigate",Toast.LENGTH_LONG).show();
+            }
+        });
+
+        FloatingActionButton contactUs  = findViewById(R.id.fab);
+        contactUs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
+                emailIntent.setData(Uri.parse("mailto:"));
+                emailIntent.putExtra(Intent.EXTRA_EMAIL , new String[] {"csetechinnerve2019@gmail.com"});
+                emailIntent.putExtra(Intent.EXTRA_SUBJECT , "query regarding INNERVE 2019");
+                startActivity(emailIntent);
             }
         });
 
